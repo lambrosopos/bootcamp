@@ -130,3 +130,32 @@ console.log(multiplicativePersistence(516))
 console.log(multiplicativePersistence(2300))
 
 // Solved !!
+
+
+
+// ============================================
+// Week 3-3 dashInsert
+// ============================================
+
+// Have the function DashInsert insert dashes ('-') between each two odd numbers in str. 
+// (문자열이 주어졌을때, 'DashInsert' 함수는 문자열에 있는 두 홀수 사이에 대시('-')를 추가하여 반환합니다.)
+
+// For example: if str is 454793 the output should be 4547-9-3. 
+// (예시: 주어진 문자열이 454793 이라면 결과값은 4547-9-3 입니다.) 
+// Don't count zero as an odd number. (0 을 홀수로 간주하지 마세요.)
+
+function DashInsert(string) {
+    // Your code here
+    return string.split("").reduce(function(prev, curr, currIdx){
+      if (parseInt(curr)%2===1 && parseInt(string[currIdx+1])%2===1){
+        if (string.indexOf(curr)!==string.length-1){
+          return prev + curr + '-';
+        }
+        
+      }
+      return prev + curr
+    }, '')
+  }
+  
+  
+console.log(DashInsert('454793'));
