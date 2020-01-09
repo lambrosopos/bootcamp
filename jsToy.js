@@ -231,10 +231,6 @@ function runLength(str) {
     return result
 };
 
-function charVSchar(char1, char2) {
-    return char1 === char2;
-}
-
 function runLength2(str) {
     
     let result = {
@@ -243,7 +239,7 @@ function runLength2(str) {
     };
 
     for (let i=0;i<str.length;i++){
-        charVSchar(str[i], str[i+1]) ? result.counter++ : (result.code += result.counter + str[i], result.counter = 1);
+        str[i]===str[i+1] ? result.counter++ : (result.code += result.counter + str[i], result.counter = 1);
     };
     return result.code;
     
@@ -257,3 +253,74 @@ console.log(runLength2("wwwggoppwww"));
 // A different solution, using object to store two values
 
 
+
+
+// ============================================
+// Week 6-3 threeFiveMultiples
+// ============================================
+
+// 숫자가 주어졌을때, threeFiveMultiples(num) 함수는 해당 숫자보다 작은 3 혹은 5의 배수들의 총합을 반환합니다.
+
+// 예시: 만약 10이 주어졌다면, 10 보다 작은 3과 5의 배수들은 3, 5, 6, 9 가 있으며 해당 숫자들을 모두 더하면 23 이 나오므로 여러분이 작성하진 함수는 23 을 반환해야 합니다.
+
+function threeFiveMultiples(num) {
+    // 여기에 코드를 작성하세요
+    // get multiples of 3 and 5 until bigger  than 10
+    // store the possible multiples in a list
+    // add the multiples
+    // return the sum of multiples
+    let dictMultiples = {
+        three : [],
+        five : [],
+    };
+
+    for (let i=0; i<num; i++) {
+        i%3===0 ? dictMultiples.three.push(i) : i%5===0 ? dictMultiples.five.push(i) : null;
+    };
+    return [...dictMultiples.three, ...dictMultiples.five].reduce((acc, curr) => acc+curr, 0)
+};
+
+function threeFiveMultiples2(num) {
+    let result = Array();
+    for (let i=0; i<num; i++) {
+        i%3===0 || i%5===0 ? result.push(i) : null;
+    };
+    return result.reduce((acc, curr) => acc+curr)
+}
+
+function threeFiveMultiples3(num) {
+    let result = 0;
+    for (let i=0; i<num; i++) {
+        i%3===0 || i%5===0 ? result += i: null;
+    };
+    return result
+}
+
+console.log(threeFiveMultiples(10));
+console.log(threeFiveMultiples2(10));
+console.log(threeFiveMultiples3(10));
+
+
+
+
+// ============================================
+// Week 9-1 sumOnMultiplicationOfOrderedPairs
+// ============================================
+
+// 입력한 숫자에 대해 서로 다른 두 숫자의 모든 경우에 대해, 곱의 합을 구하세요.
+
+// sumOnMultiplicationOfOrderedPairs(2, 3, 4) // 26
+// 위 코드의 결과가 26이 나오는 이유는 다음을 참조하세요.
+
+// 가능한 조합(Pair)은 다음과 같습니다.
+
+// (2, 3)
+// (2, 4)
+// (3, 4)
+// 각 조합의 곱을 전부 더합니다. 6 + 8 + 12 = 26
+
+// Note: parameter의 갯수가 정해져 있지 않음의 유의하세요.
+
+function sumOnMultiplicationOfPairs() {
+    // code goes here
+  }
