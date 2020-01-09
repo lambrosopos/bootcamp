@@ -146,15 +146,17 @@ console.log(multiplicativePersistence(2300))
 
 function DashInsert(string) {
     // Your code here
-    return string.split("").reduce(function(prev, curr, currIdx){
-      if (parseInt(curr)%2===1 && parseInt(string[currIdx+1])%2===1){
-        if (string.indexOf(curr)!==string.length-1){
-          return prev + curr + '-';
-        }
+    // return string.split("").reduce(function(prev, curr, currIdx){
+    //   if (parseInt(curr)%2===1 && parseInt(string[currIdx+1])%2===1){
+    //     if (string.indexOf(curr)!==string.length-1){
+    //       return prev + curr + '-';
+    //     }
         
-      }
-      return prev + curr
-    }, '')
+    //   }
+    //   return prev + curr
+    // }, '')
+    return string.split("").reduce((prev, curr, currIdx) => (parseInt(curr)%2===1 && parseInt(string[currIdx+1])%2===1) ? prev + curr + '-' : prev + curr, '')
+        
   }
   
   
