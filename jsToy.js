@@ -86,3 +86,4 @@ function flatten2(array) {
 }
 
 console.log(flatten2([1,2,[3],[4]]));
+
