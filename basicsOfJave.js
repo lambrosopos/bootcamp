@@ -46,3 +46,20 @@ oddOrEven;
 
 
 
+
+
+// ============================================
+// Fun with Arrays
+// ============================================
+
+// You can add/remove elements of an array
+// by : push, pop, shift, unshift
+
+let arrA = [1, 2, 3, 4];
+
+arrA.push(5); // Insert 5 at the end of the array
+arrA.pop(); // Removes array's last element
+
+arrA.shift(); // Removes array's first element
+arrA.unshift(0); // Adds an element at the beginning of array
+
