@@ -45,5 +45,45 @@ function letterCapitalize2(str) {
     return str.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
 }
 
-console.log(letterCapitalize2("apple is not from the tree"))
+console.log(letterCapitalize2("apple is not from the tree"));
+
+
+
+
+// ============================================
+// Week 2-4 flatten
+// ============================================
+
+
+// convert nested (2-dimensional) array to flatten array! 
+// (2차원 배열을 1차원 배열로 전환하세요.)
+
+// Examples:
+
+// flatten([1,2,[3],[4]]); // [1,2,3,4]
+
+
+function flatten (array){
+    //your solution here
+    let newArray = []
+    for (let i=0;i<array.length;i++) {
+        if (Array.isArray(array[i])) {
+        for (let j=0;j<array[i].length;j++) {
+        newArray.push(array[i][j])
+        }
+        } else {
+        newArray.push(array[i])
+        }
+        
+    }
+    return newArray
+}
+
+console.log(flatten([1,2,[3],[4]]));
+
+function flatten2(array) {
+    return array.map(eachArray => Array.isArray(eachArray) ? [...eachArray]: eachArray);
+}
+
+console.log(flatten2([1,2,[3],[4]]));
 
