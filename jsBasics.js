@@ -18,14 +18,22 @@ function repeatString(string, num) {
 
 console.log(repeatString('apple', 3));
 
-for (element of newArr){
-    console.log(element)
-}
 
-let newArr = [1, 2, 3, 4];
+
+let newArr = [1, 2, 3, 6];
 
 let newArr2 = [5, 6, 7, 8];
 
 let newArr3 = [...newArr, ...newArr2];
 
-console.log(newArr3)
+console.log(newArr3);
+
+let dictA = {1:'1', 2:'2', 3:'3', say:'4'}
+
+for (let key in dictA){
+    console.log(key);
+}
+
+for (let idx in newArr) {
+    console.log(idx)
+}
