@@ -112,47 +112,12 @@ function multiplyNumbers(num) {
 }
 
 function multiplicativePersistence(num) {
-    // your code here
-    // check if number is bigger than 9
-    //      if bigger than 9:
-    //          multiply all the single numbers within num
-    //              - split all the numbers
-    //              - multiply them all
-    //              - call on this function again
-    //      else:
-    //          give back number and end function
-    //      keep doing this until number is less than 10
-    newNum = String(num).split('').reduce((acc, curr) => acc * curr, 1)
     
-    newNum > 9 ? 
-
-
-
-
-
-    // let stringNum = String(num);
-    // console.log("Starting number " + stringNum)
-    // if (stringNum.length > 1){
-    //     let result = 1
-    //     for (i of stringNum){
-    //         result = result * parseInt(i);
-    //         console.log("Single Char " + parseInt(i))
-    //         console.log("Result " + result)
-    //         if (result === 0){
-    //             console.log("Returning 1")
-    //             return 1
-    //         }
-    //     }
-    //     num = multiplicativePersistence(result)
-    // } else {
-    //     console.log("Number " + num)
-    //     return num
-    // }
 }
 
-console.log(multiplyNumbers(2312))
-console.log(multiplyNumbers(786))
-console.log(multiplyNumbers(2248))
-console.log(multiplyNumbers(516))
-console.log(multiplyNumbers(2300))
+console.log(multiplicativePersistence(2312))
+console.log(multiplicativePersistence(786))
+console.log(multiplicativePersistence(2248))
+console.log(multiplicativePersistence(516))
+console.log(multiplicativePersistence(2300))
 
