@@ -63,3 +63,29 @@ arrA.pop(); // Removes array's last element
 arrA.shift(); // Removes array's first element
 arrA.unshift(0); // Adds an element at the beginning of array
 
+
+// If you want a simple result, a unified result, you can use reduce
+// Using reduce with arrays
+
+// Trying to find the sum of arrA
+
+let result = 0;
+
+for (element of arrA) {
+    result = result + element;
+};
+
+result;
+
+// Instead of declaring result, then going to for loop, and then giving back result,
+// you can simply use reduce method
+
+result = arrA.reduce((acc, curr) => acc + curr);
+
+// Which is the same as:
+
+result = arrA.reduce(function(acc, curr){
+    return acc + curr;
+}, 0);
+
+result
