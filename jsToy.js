@@ -175,5 +175,26 @@ console.log(DashInsert('454793'));
 // 만약 주어진 배열이 ["hello", "world", "after", "all"] 이라면 결과값은 after가 될것입니다. 왜냐하면 앞에 세 단어가 모두 5글자이기 때문에 마지막 단어를 반환하기 때문입니다. 배열은 항상 적어도 문자열 세개를 가지고 있으며, 각각의 문자열은 오직 글자만을 포함하고 있습니다.
 
 function thirdGreatest(arr) {
-    
+    // save each to an object (key : word, value : word length)
+    // check length of each
+    // sort them
+    // retrieve third longest word
+    // return third longest word
+
+    // let dictWords = arr.reduce(function(acc, curr){
+    //     acc[curr] = curr.length;
+    //     return acc;
+    // }, {});
+    // return dictWords
+
+    arr.sort((a, b) => b.length - a.length);
+    return [arr, arr[2]]
   }
+
+console.log(thirdGreatest(["hello", "after", "all", "world"]))
+console.log(thirdGreatest(["hello", "world", "before", "all"]))
+
+// Solved by using the length of word and sort
+// Not changing the order of the length of words that are the same
+// But only those that are higher
+
