@@ -322,5 +322,31 @@ console.log(threeFiveMultiples3(10));
 // Note: parameter의 갯수가 정해져 있지 않음의 유의하세요.
 
 function sumOnMultiplicationOfPairs() {
-    // code goes here
-  }
+    // let uniqueSet = [...new Set(Array.from(arguments))].sort((a, b) => a-b);
+    let uniqueSet = Array.from(arguments)
+    let result = 0;
+
+    console.log({uniqueSet, result})
+    console.log(Array.isArray(uniqueSet))
+    console.log(uniqueSet.length)
+
+
+    for (let i=0;i<uniqueSet.length-1;i++) {
+        let j = i+1;
+        console.log(j);
+        while (j<uniqueSet.length) {
+            console.log(uniqueSet.length)
+            result = result + (uniqueSet[i] * uniqueSet[j]);
+            console.log({result})
+            j = j+1;
+            console.log(j)
+        }
+    };
+    console.log({result})
+    return result;
+}
+
+console.log(sumOnMultiplicationOfPairs(2, 5, 3, 2, 3));
+console.log(sumOnMultiplicationOfPairs(3, 3, 4, 2, 7, 1));
+
+// Solution is different -> two ways : one with unique set, the other not
