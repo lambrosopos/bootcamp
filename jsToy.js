@@ -112,12 +112,21 @@ function multiplyNumbers(num) {
 }
 
 function multiplicativePersistence(num) {
+    let counter = 0;
     
+    while (num>9) {
+        num = multiplyNumbers(num)
+        counter = counter + 1
+    };
+    
+    return counter
 }
 
+console.log(multiplicativePersistence(39))
 console.log(multiplicativePersistence(2312))
 console.log(multiplicativePersistence(786))
 console.log(multiplicativePersistence(2248))
 console.log(multiplicativePersistence(516))
 console.log(multiplicativePersistence(2300))
 
+// Solved !!
