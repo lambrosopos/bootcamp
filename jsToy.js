@@ -188,7 +188,7 @@ function thirdGreatest(arr) {
     // return dictWords
 
     arr.sort((a, b) => b.length - a.length);
-    return [arr, arr[2]]
+    return arr[2]
   }
 
 console.log(thirdGreatest(["hello", "after", "all", "world"]))
@@ -197,4 +197,63 @@ console.log(thirdGreatest(["hello", "world", "before", "all"]))
 // Solved by using the length of word and sort
 // Not changing the order of the length of words that are the same
 // But only those that are higher
+
+
+
+// ============================================
+// Week 6-2 runLength
+// ============================================
+// 문자열이 주어졌을때, runLength(str) 함수는 Run-length 인코딩 알고리즘을 사용하여 주어진 문자열을 압축하여 반환합니다.
+
+// 해당 알고리즘은 반복되는 글자가 있을경우 반복되는 수와 해당 글자를 조합하여 문자열을 압축시킵니다.
+
+// 예시: wwwggopp 는 3w2g1o2p 로 압축됩니다. 주어지는 문자열은 숫자나, 구두점이나, 문자를 포함하고 있지 않습니다.
+
+
+function runLength(str) {
+    // Your code here
+    // way to figure out what character it is
+    // compare characters
+    //      if character is same as next : counter ++
+    //      else : counter = 1
+    let result = String();
+    let counter = 1;
+    for (let i=0; i<str.length;i++) {
+        console.log(str[i])
+        if (str[i] === str[i+1]) {
+            counter += 1;
+        } else {
+            result = result  + counter + str[i];
+            counter = 1;
+        }
+
+    };
+    return result
+};
+
+function charVSchar(char1, char2) {
+    return char1 === char2;
+}
+
+function runLength2(str) {
+    
+    let result = {
+        code : '',
+        counter : 1,
+    };
+
+    for (let i=0;i<str.length;i++){
+        charVSchar(str[i], str[i+1]) ? result.counter++ : (result.code += result.counter + str[i], result.counter = 1);
+    };
+    return result.code;
+    
+}
+
+
+console.log(runLength("wwwggoppwww"));
+console.log(runLength2("wwwggoppwww"));
+
+
+// A different solution, using object to store two values
+
 
