@@ -46,3 +46,4 @@ function letterCapitalize2(str) {
 }
 
 console.log(letterCapitalize2("apple is not from the tree"))
+
