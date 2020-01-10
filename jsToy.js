@@ -450,3 +450,43 @@ console.log(gcd2(6, 18));
 
 // Solution for greatest common diviser is still over my head I guess
 
+
+
+// ============================================
+// Week 6-4 findMaxOnMultiplesOfThirty (extra)
+// ===========================================
+
+/*
+어느날, 성준이는 우연히 길거리에서 양수 N을 보았다. 성준이는 30이란 수를 존경하기 때문에, 그는 길거리에서 찾은 수에 포함된 숫자들을 섞어 30의 배수가 되는 가장 큰 수를 만들고 싶어한다. 성준이를 도와 그가 만들고 싶어하는 수를 계산하는 프로그램을 작성하라. (그 수가 존재한다면)
+
+출력 : 성준이가 만들고 싶어하는 수가 존재한다면 그 수를 출력하라. 그 수가 존재하지 않는다면, -1을 출력하라.
+
+findMaxOnMultiplesOfThirty(4095)  // 9540
+findMaxOnMultiplesOfThirty(1023)  // 3210
+findMaxOnMultiplesOfThirty(4800)  // 8400
+*/
+
+/* Pseudo Code
+
+1. Get number (See if number is greater than 30)
+2. Add all digits
+3. Check if addition of digits is divisible by 3
+4. Return number on descending order of digits
+
+*/
+
+function findMaxOnMultiplesOfThirty(num) {
+    let result = 0;
+
+    if (num > 30) {
+      const listifiedNum = String(num).split('')
+      let digitSum = listifiedNum.reduce((acc, curr) => acc * curr, 1);
+      result = digitSum%3===0 ? Number(listifiedNum.sort((a, b) => b-a).join('')) : 0;
+    };
+    return result;
+};
+
+console.log(findMaxOnMultiplesOfThirty(20))
+console.log(findMaxOnMultiplesOfThirty(1023))
+console.log(findMaxOnMultiplesOfThirty(4800))
+
