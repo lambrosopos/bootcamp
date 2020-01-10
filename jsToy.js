@@ -387,8 +387,30 @@ let obj = {
 };
 console.log(getProductOfAllElementsAtProperty(obj, 'key'));
 
-console.log(obj[key].length === 0 ? 0 : 1)
+// console.log(obj[key].length === 0 ? 0 : 1)
 
 // Solution -> to create better readable code, one must sometimes use if statements
+
+
+function comparisonNumber(num1, num2) {
+
+    if (num1.length > num2.length) {
+        return 1
+    } else if (num1.length < num2.length) {
+        return -1
+    } else {
+        return 0
+    };
+};
+
+console.log([64, 43, 20, 22, 12].sort(comparisonNumber))
+
+
+function comparisonString(str1, str2) {
+
+    return str1.length - str2.length
+};
+
+console.log(['apple', 'sugar', 'honey', 'tree', 'try'].sort(comparisonString))
 
 
