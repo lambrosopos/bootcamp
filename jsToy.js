@@ -490,3 +490,29 @@ console.log(findMaxOnMultiplesOfThirty(20))
 console.log(findMaxOnMultiplesOfThirty(1023))
 console.log(findMaxOnMultiplesOfThirty(4800))
 
+
+
+// ===========================================
+// Week 5-4 findMinByBracket
+// ===========================================
+
+/*
++, -, 그리고 괄호를 가지고 길이가 최대 50인 식을 만들었다. 그리고 나서 성준 이는 괄호를 모두 지웠다. 그리고 나서 괄호를 적절히 쳐서 이 식의 값을 최소로 만드려고 한다. 괄호를 적절히 쳐서 이 식의 값을 최소로 만드는 프로그램을 작성하시오.
+
+findMinByBracket('55-50+40') // -35
+
+*/
+
+function findMinByBracket(str) {
+    
+
+
+    return str.split('-')
+}
+  
+
+console.log(findMinByBracket('55-50+40'))
+console.log(findMinByBracket('55-50+40+30-30'))
+console.log(findMinByBracket('-55-50+6-34'))
+
+
