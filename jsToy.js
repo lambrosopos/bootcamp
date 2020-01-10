@@ -394,13 +394,7 @@ console.log(getProductOfAllElementsAtProperty(obj, 'key'));
 
 function comparisonNumber(num1, num2) {
 
-    if (num1.length > num2.length) {
-        return 1
-    } else if (num1.length < num2.length) {
-        return -1
-    } else {
-        return 0
-    };
+    return num1.length - num2.length
 };
 
 console.log([64, 43, 20, 22, 12].sort(comparisonNumber))
@@ -413,4 +407,46 @@ function comparisonString(str1, str2) {
 
 console.log(['apple', 'sugar', 'honey', 'tree', 'try'].sort(comparisonString))
 
+
+
+
+// ============================================
+// Week 9-3 GCD
+// ============================================
+
+/*
+주어진 두 숫자에 대한 최대공약수(greatest common divisor)를 구하세요
+
+gcd(22, 24) // 2
+*/
+
+function gcd(num1, num2) {
+    
+    let maxLimit = Math.max(num1, num2);
+    let greatestDivsier = 0;
+
+    for (let i=0;i<=maxLimit;i++) {
+        if (num1%i===0 && num2%i===0) {
+            greatestDivsier = i;
+        }
+    }
+
+    return greatestDivsier;
+}
+
+console.log(gcd(1, 2));
+console.log(gcd(4, 2));
+console.log(gcd(6, 18));
+
+function gcd2(num1, num2) {
+    console.log({num1, num2})
+    return num2 ? gcd(num2, num1 % num2) : num1;
+}
+
+console.log(gcd2(9, 9));
+console.log(gcd2(4, 2));
+console.log(gcd2(6, 18));
+
+
+// Solution for greatest common diviser is still over my head I guess
 
