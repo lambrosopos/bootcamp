@@ -322,5 +322,171 @@ console.log(threeFiveMultiples3(10));
 // Note: parameter의 갯수가 정해져 있지 않음의 유의하세요.
 
 function sumOnMultiplicationOfPairs() {
-    // code goes here
-  }
+    // let uniqueSet = [...new Set(Array.from(arguments))].sort((a, b) => a-b);
+    let uniqueSet = Array.from(arguments)
+    let result = 0;
+
+    console.log({uniqueSet, result})
+    console.log(Array.isArray(uniqueSet))
+    console.log(uniqueSet.length)
+
+
+    for (let i=0;i<uniqueSet.length-1;i++) {
+        let j = i+1;
+        console.log(j);
+        while (j<uniqueSet.length) {
+            console.log(uniqueSet.length)
+            result = result + (uniqueSet[i] * uniqueSet[j]);
+            console.log({result})
+            j = j+1;
+            console.log(j)
+        }
+    };
+    console.log({result})
+    return result;
+}
+
+console.log(sumOnMultiplicationOfPairs(2, 5, 3, 2, 3));
+console.log(sumOnMultiplicationOfPairs(3, 3, 4, 2, 7, 1));
+
+// Solution is different -> two ways : one with unique set, the other not
+
+
+
+// ============================================
+// "getProductOfAllElementsAtProperty" 함수를 작성하세요.
+// ============================================
+
+// 객체와 키가 주어졌을때, "getProductOfAllElementsAtProperty" 함수는 주어진 키에 위치한 배열의 요소의 곱을 반환합니다.
+
+// Notes:
+
+// 만약 배열이 비어있다면, 0을 반환해야 합니다.
+// 만약 주어진 키에 위치하는 속성값이 배열이 아니라면, 0을 반환해야 합니다.
+// 만약 주어진 키에 위치하는 속성이 없다면, 0을 반환해야 합니다.
+// let obj = {
+//   key: [1, 2, 3, 4]
+// };
+// let output = getProductOfAllElementsAtProperty(obj, 'key');
+// console.log(output); // --> 24
+// Hint:
+
+// 배열의 reduce 메소드를 이용해보세요.
+
+function getProductOfAllElementsAtProperty(obj, key) {
+    if (!obj[key] || obj[key].length ===0 || !Array.isArray(obj[key])){
+        return 0
+    }
+    
+    return obj[key].reduce((acc, curr) => acc * curr, 1);
+}
+
+let obj = {
+  key: [1, 2, 3, 4],
+//   key: [],
+};
+console.log(getProductOfAllElementsAtProperty(obj, 'key'));
+
+// console.log(obj[key].length === 0 ? 0 : 1)
+
+// Solution -> to create better readable code, one must sometimes use if statements
+
+
+function comparisonNumber(num1, num2) {
+
+    return num1.length - num2.length
+};
+
+console.log([64, 43, 20, 22, 12].sort(comparisonNumber))
+
+
+function comparisonString(str1, str2) {
+
+    return str1.length - str2.length
+};
+
+console.log(['apple', 'sugar', 'honey', 'tree', 'try'].sort(comparisonString))
+
+
+
+
+// ============================================
+// Week 9-3 GCD
+// ============================================
+
+/*
+주어진 두 숫자에 대한 최대공약수(greatest common divisor)를 구하세요
+
+gcd(22, 24) // 2
+*/
+
+function gcd(num1, num2) {
+    
+    let maxLimit = Math.max(num1, num2);
+    let greatestDivsier = 0;
+
+    for (let i=0;i<=maxLimit;i++) {
+        if (num1%i===0 && num2%i===0) {
+            greatestDivsier = i;
+        }
+    }
+
+    return greatestDivsier;
+}
+
+console.log(gcd(1, 2));
+console.log(gcd(4, 2));
+console.log(gcd(6, 18));
+
+function gcd2(num1, num2) {
+    console.log({num1, num2})
+    return num2 ? gcd(num2, num1 % num2) : num1;
+}
+
+console.log(gcd2(9, 9));
+console.log(gcd2(4, 2));
+console.log(gcd2(6, 18));
+
+
+// Solution for greatest common diviser is still over my head I guess
+
+
+
+// ============================================
+// Week 6-4 findMaxOnMultiplesOfThirty (extra)
+// ===========================================
+
+/*
+어느날, 성준이는 우연히 길거리에서 양수 N을 보았다. 성준이는 30이란 수를 존경하기 때문에, 그는 길거리에서 찾은 수에 포함된 숫자들을 섞어 30의 배수가 되는 가장 큰 수를 만들고 싶어한다. 성준이를 도와 그가 만들고 싶어하는 수를 계산하는 프로그램을 작성하라. (그 수가 존재한다면)
+
+출력 : 성준이가 만들고 싶어하는 수가 존재한다면 그 수를 출력하라. 그 수가 존재하지 않는다면, -1을 출력하라.
+
+findMaxOnMultiplesOfThirty(4095)  // 9540
+findMaxOnMultiplesOfThirty(1023)  // 3210
+findMaxOnMultiplesOfThirty(4800)  // 8400
+*/
+
+/* Pseudo Code
+
+1. Get number (See if number is greater than 30)
+2. Add all digits
+3. Check if addition of digits is divisible by 3
+4. Return number on descending order of digits
+
+*/
+
+function findMaxOnMultiplesOfThirty(num) {
+    let result = 0;
+
+    if (num > 30) {
+      const listifiedNum = String(num).split('')
+      let digitSum = listifiedNum.reduce((acc, curr) => acc * curr, 1);
+      result = digitSum%3===0 ? Number(listifiedNum.sort((a, b) => b-a).join('')) : 0;
+    };
+    return result;
+};
+
+console.log(findMaxOnMultiplesOfThirty(20))
+console.log(findMaxOnMultiplesOfThirty(1023))
+console.log(findMaxOnMultiplesOfThirty(4800))
+
