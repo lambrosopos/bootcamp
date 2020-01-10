@@ -374,5 +374,21 @@ console.log(sumOnMultiplicationOfPairs(3, 3, 4, 2, 7, 1));
 // 배열의 reduce 메소드를 이용해보세요.
 
 function getProductOfAllElementsAtProperty(obj, key) {
-    // your code here
-  }
+    if (!obj[key] || obj[key].length ===0 || !Array.isArray(obj[key])){
+        return 0
+    }
+    
+    return obj[key].reduce((acc, curr) => acc * curr, 1);
+}
+
+let obj = {
+  key: [1, 2, 3, 4],
+//   key: [],
+};
+console.log(getProductOfAllElementsAtProperty(obj, 'key'));
+
+console.log(obj[key].length === 0 ? 0 : 1)
+
+// Solution -> to create better readable code, one must sometimes use if statements
+
+
