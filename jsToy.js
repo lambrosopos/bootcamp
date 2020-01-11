@@ -508,7 +508,7 @@ console.log(Number(''))
 
 function convertToNum(val) {
     let result = 0;
-    val.split('+').forEach((element) => result = result + parseInt(element))
+    // val.split('+').forEach((element) => result = result + parseInt(element))
     return result
 }
 
@@ -565,8 +565,19 @@ function primeNumber(num){
     }
 return true;
 }
+
+console.log(primeNumber(4))
+console.log(primeNumber(3))
   
 function goldbachsConjecture(num) {
-    
+    for (let i=2; i < num; i++) {
+        let remainder = num - i;
+        if (primeNumber(i) && primeNumber(remainder)) {
+            return `${num} = ${i} + ${remainder}`
+        }
+    };
 };
 
+console.log(goldbachsConjecture(12))
+console.log(goldbachsConjecture(5000))
+console.log(goldbachsConjecture(6000))
