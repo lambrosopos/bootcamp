@@ -502,17 +502,26 @@ console.log(findMaxOnMultiplesOfThirty(4800))
 findMinByBracket('55-50+40') // -35
 
 */
+console.log(Boolean(Number('55')))
+console.log(Number('55+42'))
+console.log(Number(''))
+
+function convertToNum(val, idx, array) {
+    return val + 'hi'
+    
+}
 
 function findMinByBracket(str) {
     
+    let result = str.split('-')
 
-
+    console.log(result.forEach(convertToNum))
+    
     return str.split('-')
-}
+};
   
 
 console.log(findMinByBracket('55-50+40'))
 console.log(findMinByBracket('55-50+40+30-30'))
 console.log(findMinByBracket('-55-50+6-34'))
-
-
+console.log(findMinByBracket('55'))
