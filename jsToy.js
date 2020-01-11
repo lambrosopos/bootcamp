@@ -506,18 +506,23 @@ console.log(Boolean(Number('55')))
 console.log(Number('55+42'))
 console.log(Number(''))
 
-function convertToNum(val, idx, array) {
-    return val + 'hi'
-    
+function convertToNum(val) {
+    let result = 0;
+    val.split('+').forEach((element) => result = result + parseInt(element))
+    return result
 }
 
 function findMinByBracket(str) {
     
     let result = str.split('-')
+    result = result.map(convertToNum)
 
-    console.log(result.forEach(convertToNum))
+    if (!result[0]) {
+        return result.slice(1).reduce((acc, curr, currIdx) => currIdx===0 ? acc : acc - curr, -result[1])
+    } else {
+        return result.reduce((acc, curr, currIdx) => currIdx===0 ? acc : acc - curr, result[0])
+    };
     
-    return str.split('-')
 };
   
 
@@ -525,3 +530,43 @@ console.log(findMinByBracket('55-50+40'))
 console.log(findMinByBracket('55-50+40+30-30'))
 console.log(findMinByBracket('-55-50+6-34'))
 console.log(findMinByBracket('55'))
+
+console.log([1, 2,53 , 4, 5, 6, 7, 8].map(convertToNum))
+
+// Solution -- still not perfect
+
+
+
+// ===========================================
+// Week 9-4 goldbachsConjecture (extra)
+// ===========================================
+
+/*
+골드바흐의 추측(Goldbach's conjecture)은 오래전부터 알려진 정수론의 미해결 문제로, 2보다 큰 모든 짝수는 두 개의 소수(Prime number)의 합으로 표시할 수 있다는 것이다. 이때 하나의 소수를 두 번 사용하는 것은 허용한다.
+
+reference
+https://ko.wikipedia.org/wiki/골드바흐의_추측
+https://ko.wikipedia.org/wiki/에라토스테네스의_체
+Problem: 어떤 짝수에 대해서 골드바흐의 추측이 맞는지 확인하시오. 이때 표현할 수 있는 것의 갯수가 2개 이상이면 두 수의 차가 가장 큰 것을 출력하시오.
+
+goldbachsConjecture(5892) // "5892 = 11 + 5881"
+goldbachsConjecture(12) // "12 = 7 + 5"
+*/
+
+  // you'll probably need this function
+function primeNumber(num){
+    if(num < 2) {
+        return false;
+    }
+    for(let i = 2; i < num; i++){
+        if(num % i === 0){
+        return false;
+        }
+    }
+return true;
+}
+  
+function goldbachsConjecture(num) {
+    
+};
+
