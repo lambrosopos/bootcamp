@@ -181,6 +181,12 @@ function convertObjectToList(obj) {
 console.log(convertObjectToList(objA));
 
 function convertObjectToList2(obj) {
-    
+    return Object.keys(obj).map((val, idx) => {
+        return [val, Object.values(obj)[idx]]})
   }
+
+console.log(convertObjectToList2(objA))
+
+
+
   
