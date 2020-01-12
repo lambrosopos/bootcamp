@@ -278,10 +278,15 @@ console.log(greetCustomer(customerData, 'Margaret'))
 console.log(greetCustomer(customerData, 'Carrie'))
 
 function greetCustomer2(customerData, firstName) {
-    let greeting = '';
-
-
-    return greeting;
+    
+    switch (customerData[firstName] ? customerData[firstName].visits : undefined) {
+        case (undefined) :
+            return 'Welcome! Is this your first time?';
+        case (1) :
+            return `Welcome back, ${firstName}! We\'re glad you liked us the first time!`
+        default :
+            return `Welcome back, ${firstName}! So glad to see you again!`
+    }
 }
   
 
