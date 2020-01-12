@@ -48,3 +48,93 @@ function fromListToObject3(array) {
 }
 
 console.log(fromListToObject3([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964]]))
+
+
+function fromListToObject4(array) {
+    return array.reduce((acc, cur) => {
+        acc[cur[0]] = cur[1]
+    return acc}, {});
+}
+
+console.log(fromListToObject4([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964], ['make', 'Ford'], ['he', 'she']]))
+
+
+
+//========================================
+// transformEmployeeData
+//========================================
+/*
+사원들의 정보를 다른 형태로 변형 할 수 있는 함수 "transformEmployeeData" 함수를 작성하세요.
+
+사원들의 정보는 아래와 같은 배열로 주어질 수 있습니다.
+
+[
+  [
+    ['firstName', 'Joe'],
+    ['lastName', 'Blow'],
+    ['age', 42],
+    ['role', 'clerk']
+  ],
+  [
+    ['firstName', 'Mary'],
+    ['lastName', 'Jenkins'],
+    ['age', 36],
+    ['role', 'manager']
+  ]
+];
+위의 배열이 input으로 주어진다면, 다음과 같은 output을 리턴해야합니다.
+
+[
+  { firstName: 'Joe', lastName: 'Blow', age: 42, role: 'clerk' },
+  { firstName: 'Mary', lastName: 'Jenkins', age: 36, role: 'manager' }
+];
+입력값에는 예시와 다른 키값들이 있을 수도 있고 사원수가 다를 수도 있습니다. 예를 들어, 인사팀에서 "tshirtSize"를 각 사원들의 정보에 넣었다면, 여러분의 코드는 해당 사항을 유연히 대처 할 수 있어야 합니다.
+
+*/
+
+function transformEmployeeData(array) {
+    // return array.map((val) => {
+    //     val.reduce((acc, cur) => ({
+    //         ...acc,
+    //         cur[0] : cur[1]
+    //     }), {})
+    // })
+    return array.map(function (val) {
+        return val.reduce((acc, cur) => ({...acc, [cur[0]] : cur[1]}), {})
+    })
+  }
+  
+  let array = [
+    [
+      ['firstName', 'Joe'],
+      ['lastName', 'Blow'],
+      ['age', 42],
+      ['role', 'clerk']
+    ],
+    // [
+    //   ['firstName', 'Mary'],
+    //   ['lastName', 'Jenkins'],
+    //   ['age', 36],
+    //   ['role', 'manager']
+    // ]
+  ];
+  
+  let output = transformEmployeeData(array);
+  console.log(output);
+
+
+let dictA = {
+    firstName : 'Sloppy',
+    lastName : 'Joes',
+    age : '54',
+    role : 'great',
+}
+
+let arrA = [1, 2]
+
+let dictB = {...dictA, [arrA[0]]:arrA[1]}
+
+
+console.log(dictA)
+console.log(dictB)
+
