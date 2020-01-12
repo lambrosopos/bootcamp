@@ -138,3 +138,270 @@ let dictB = {...dictA, [arrA[0]]:arrA[1]}
 console.log(dictA)
 console.log(dictB)
 
+
+
+
+//========================================
+// 006_convertObjectToArray3.js
+//========================================
+/*
+초기화
+테스트 실행
+
+Write a function called "convertObjectToList" which converts an object literal into an array of arrays, like this: (객체를 입력으로 받고 해당 객체를 다음과 같이 2차원 배열로 변형 할 수 있는 함수 "convertObjectToList"를 작성하세요.)
+
+Argument:
+
+{
+name: 'Holly',
+age: 35,
+role: 'producer'
+}
+Return value:
+
+[['name', 'Holly'], ['age', 35], ['role', 'producer']];
+Note that your function should be able to handle ANY object like this, not just the exact sample provided above. (여러분이 작성하신 함수는 위에 제시된 예시 뿐만 아니라 어떠한 객체도 다룰 수 있어야 합니다.)
+*/
+let objA = {
+    name: 'Holly',
+    age: 35,
+    role: 'producer'
+    }
+
+
+function convertObjectToList(obj) {
+    // your code here
+    let result= [];
+    for (key in obj){
+      result.push([key, obj[key]])
+    }
+    return result;
+  }
+  
+console.log(convertObjectToList(objA));
+
+function convertObjectToList2(obj) {
+    return Object.keys(obj).map((val, idx) => {
+        return [val, Object.values(obj)[idx]]})
+  }
+
+console.log(convertObjectToList2(objA))
+
+
+
+
+
+//========================================
+// 007_greetCustomers.js
+//========================================
+/*
+모델 솔루션
+제출 취소하기
+
+Write a function called "greetCustomer". ("greetCustomer" 함수를 작성하세요.)
+
+Given a name, "greetCustomer" returns a greeting based on how many times that customer has visited the restaurant. Please refer to the customerData object. (고객들의 방문 횟수를 가지고 있는 객체와 이름이 주어졌을때, "greetCustomer" 함수는 손님이 몇번 방문했는지에 따라 다른 인삿말을 반환합니다. customerData 객체를 참고해 주세요.)
+
+customerData의 형식은 아래와 같습니다.
+*/
+
+  
+
+/*
+The greeting should be different, depending on the name on their reservation. (손님들의 예약에 나타나 있는 이름에 따라 인삿말이 달라야 합니다.)
+
+Case 1 - Unknown customer ( Name is not present in customerData ): (상황 1 - 처음 방문한 손님 (customerData에 이름이 없을경우):)
+
+let output = greetCustomer(customerData, 'Terrance');
+console.log(output); // --> 'Welcome! Is this your first time?'
+Case 2 - Customer who has visited only once ( 'visits' value is 1 ): (상황 2 - 한번 방문했던적이 있는 손님 ('visits'의 값이 1인 경우):)
+
+let output = greetCustomer(customerData, 'Joe');
+console.log(output); // --> 'Welcome back, Joe! We're glad you liked us the first time!'
+Case 3 - Repeat customer: ( 'visits' value is greater than 1 ): (상황 3 - 여러번 방문한 손님 ('visits'의 값이 1보다 큰 경우):)
+
+let output = greetCustomer(customerData, 'Carol');
+console.log(output); // --> 'Welcome back, Carol! So glad to see you again!'
+Notes:
+
+Your function should not alter the customerData object to update the number of visits. (- 여러분의 함수는 방문수를 업데이트 하기위해 customerData 객체를 수정하여서는 안됩니다.)
+Do not hardcode to the exact sample data. This is a BAD IDEA: (샘플 데이터를 하드코딩 하지 마세요. 좋지 않은 생각입니다.)
+if (firstName === 'Joe') {
+  // do something
+}
+
+*/
+let customerData = {
+    Joe: {
+      visits: 1
+    },
+    Carol: {
+      visits: 2
+    },
+    Howard: {
+      visits: 3
+    },
+    Carrie: {
+      visits: 4
+    }
+};
+
+
+
+function greetCustomer(customerData, firstName) {
+    let greeting = {
+      unknown:'Welcome! Is this your first time?',
+      second:'Welcome back, $name! We\'re glad you liked us the first time!',
+      otherwise:'Welcome back, $name! So glad to see you again!',
+    };
+    // your code here
+    if (!(firstName in customerData)) {
+      return greeting['unknown'];
+    };
+  
+    let customer = customerData[firstName];
+    let numVisits = customer['visits'];
+  
+    if (numVisits>1){
+      let result = greeting['otherwise'];
+      return result.replace('$name', firstName);
+      // return String(greeting['otherwise']).replace($name, customer);
+    } else {
+      let result = greeting['second'];
+      return result.replace('$name', firstName);
+      // return String(greeting['second']).replace($name, customer);
+    };
+  }
+
+console.log(greetCustomer(customerData, 'Joe'))
+console.log(greetCustomer(customerData, 'Margaret'))
+console.log(greetCustomer(customerData, 'Carrie'))
+
+function greetCustomer2(customerData, firstName) {
+    
+    switch (customerData[firstName] ? customerData[firstName].visits : undefined) {
+        case (undefined) :
+            return 'Welcome! Is this your first time?';
+        case (1) :
+            return `Welcome back, ${firstName}! We\'re glad you liked us the first time!`
+        default :
+            return `Welcome back, ${firstName}! So glad to see you again!`
+    }
+}
+  
+
+
+console.log(greetCustomer2(customerData, 'Joe'))
+console.log(greetCustomer2(customerData, 'Margaret'))
+console.log(greetCustomer2(customerData, 'Carrie'))
+
+
+
+
+
+
+//========================================
+// a002_getIndexOf.js
+//========================================
+
+/*
+초기화
+테스트 실행
+
+Write a function called "getIndexOf". ("getIndexOf" 함수를 작성하세요.)
+
+Given a character and a string, "getIndexOf" returns the first position of the given character in the given string. (문자와 문자열이 주어졌을때, "getIndexOf" 함수는 주어진 문자열에서 주어진 문자가 나타나는 첫번째 위치를 반환합니다.)
+
+Notes:
+
+Strings are zero indexed, meaning the first character in a string is at position 0. (- 문자열의 첫번째 문자는 인덱스 값 0 을 가집니다.)
+When a string contains more than one occurrence of a character, it should return the index of its first occurrence. (- 만약 문자열에 해당 문자가 여러번 나타나면, 첫번째로 나타나는 위치를 반환해야 합니다.)
+If the character does not exist in the string, it should return -1. (- 만약 문자가 문자열에 존재하지 않는다면, -1 을 반환해야 합니다.)
+Do not use the native indexOf function in your implementation. (- indexOf 함수를 사용하지 마세요.)
+let output = getIndexOf('a', 'I am a hacker');
+console.log(output); // --> 2
+*/
+
+function getIndexOf(char, str) {
+    // your code here
+    for (let i=0;i<str.length;i++) {
+        if (str[i]===char){
+        return i
+        }
+    }
+    return -1
+}
+
+console.log(getIndexOf('a', 'I\'m an apple'))
+
+
+function getIndexOf2(char, str) {
+    // your code here
+    return str.split('').reduce((acc, curr, curIdx) => curr===char ? (acc.push(curIdx), acc) : acc, [])[0]
+}
+    
+
+console.log(typeof getIndexOf2('a', 'I\'m an apple'))
+console.log(getIndexOf2('a', 'Crisis comes at an early price'))
+
+
+
+
+//========================================
+// a005_sumDigits.js
+//========================================
+/*
+초기화
+테스트 실행
+
+Write a function called "sumDigits". ("sumDigits" 함수를 작성하세요.)
+
+Given a number, "sumDigits" returns the sum of all its digits. (숫자가 주어졌을때, "sumDigits" 함수는 숫자의 각 자리수를 모두 더한 값을 반환합니다.)
+
+let output = sumDigits(1148);
+console.log(output); // --> 14
+If the number is negative, the first digit should count as negative. (만약 숫자가 음수라면, 첫번째 자릿수는 음수로 고려되어야 합니다.)
+
+let output = sumDigits(-316);
+console.log(output); // --> 4
+Notes:
+
+In order to use some of the methods that will be most helpful to you, you will most likely want to do some string to number conversion and vice versa. (- 여러분에게 도움이 될 메소드를 사용하기위해서는 아마도 문자열을 숫자로 바꾸거나 숫자를 문자로 바꾸는게 수월하실 겁니다.)
+Be sure to familiarize yourself with the "toString" method, as well as the "Number" function. ("Number" 함수와 "toString" 메소드에 꼭 익숙해지세요.)
+*/
+
+function summation(stringy){
+    return stringy.split('').reduce(function(acc, curr){
+      return acc + Number(curr)
+    }, 0);
+  }
+  
+  function sumDigits(num) {
+    // your code here
+    if (String(num)[0] === '-'){
+      return Number(summation(String(num).slice(2))) + Number(String(num).substring(0, 2))
+    } else {
+      return Number(summation(String(num)))
+    }
+  
+  }
+
+console.log(sumDigits(1423))
+console.log(sumDigits(-423))
+
+  function sumDigits2(num) {
+    // your code here
+    if (num < 0){
+      return Number(String(num).split('').slice(1).reduce((acc, curr, currIdx) => {
+        return currIdx === 0 ? acc-curr : acc + parseInt(curr)
+    }, 0))
+    } else {
+      return Number(String(num).split('').reduce((acc, curr) => {
+          return acc + parseInt(curr)
+      }, 0))
+    }
+  
+  }
+
+console.log(sumDigits2(7777))
+console.log(sumDigits2(-55024))
