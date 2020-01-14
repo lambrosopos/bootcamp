@@ -1,8 +1,4 @@
 /*
-"should find the largest prime factor of a composite number"
-
-"should find the largest palindrome made from the product of two 3 digit numbers"
-
 "should find the smallest number divisible by each of the numbers 1 to 20"
 
 "should find the difference between the sum of the squares and the square of the sums"
@@ -16,7 +12,7 @@
 // Composite Number = Positive integer 'n' where 'n' is not a prime
 
 function isPrime(num) {
-  for (let i=2;i<num;i++){
+  for (let i=2;i<num;i++) {
     if (num%i===0) {
       return false
     }
@@ -26,8 +22,8 @@ function isPrime(num) {
 }
 
 // Checking if prime number detector works
-console.log(isPrime(10))
-console.log(isPrime(2))
+// console.log(isPrime(10))
+// console.log(isPrime(2))
 
 function largestPrimeFactor(compositeNum) {
   if (compositeNum < 1 || isPrime(compositeNum)) {
@@ -42,8 +38,49 @@ function largestPrimeFactor(compositeNum) {
 }
 
 // Checking largest prime factor function
-console.log(largestPrimeFactor(7))
-console.log(largestPrimeFactor(18))
-console.log(largestPrimeFactor(21))
-console.log(largestPrimeFactor(40))
+// console.log(largestPrimeFactor(7))
+// console.log(largestPrimeFactor(18))
+// console.log(largestPrimeFactor(21))
+// console.log(largestPrimeFactor(40))
 
+
+
+
+// Question #1
+// "should find the largest palindrome made from the product of two 3 digit numbers"
+
+function findPalindrome(digitSize) {
+  let maxNum = Math.pow(10, digitSize) - 1;
+  let minNum = Math.pow(10, digitSize-1);
+  
+  function getHighestPalindrome() {
+    let firstNum = maxNum;
+    let secondNum = maxNum;
+
+    let highestPalindrome = 0;
+
+    while (firstNum>minNum) {
+      for (let i=secondNum;i>minNum;i--) {
+        let product = firstNum * i;
+        let arrOfProduct = String(product).split('');
+        // console.log({firstNum, i});
+
+        if (arrOfProduct.join('')===arrOfProduct.reverse().join('') && product > highestPalindrome) {
+          highestPalindrome = product;
+
+        }
+      }
+      firstNum = firstNum - 1
+    }
+    return highestPalindrome
+  }
+  return  getHighestPalindrome
+}
+let palindrom2digits = findPalindrome(2)
+console.log("Palindrome for 2 digit products : " + palindrom2digits())
+
+let palindrom3digits = findPalindrome(3)
+console.log("Palindrome for 3 digit products : " + palindrom3digits())
+
+// let palindrom4digits = findPalindrome(4);
+// console.log("Palindrome for 4 digit products : " + palindrom4digits())
