@@ -1,5 +1,4 @@
 /*
-"should find the smallest number divisible by each of the numbers 1 to 20"
 
 "should find the difference between the sum of the squares and the square of the sums"
 
@@ -76,11 +75,41 @@ function findPalindrome(digitSize) {
   }
   return  getHighestPalindrome
 }
-let palindrom2digits = findPalindrome(2)
-console.log("Palindrome for 2 digit products : " + palindrom2digits())
+// let palindrom2digits = findPalindrome(2)
+// console.log("Palindrome for 2 digit products : " + palindrom2digits())
 
-let palindrom3digits = findPalindrome(3)
-console.log("Palindrome for 3 digit products : " + palindrom3digits())
+// let palindrom3digits = findPalindrome(3)
+// console.log("Palindrome for 3 digit products : " + palindrom3digits())
 
 // let palindrom4digits = findPalindrome(4);
 // console.log("Palindrome for 4 digit products : " + palindrom4digits())
+
+
+
+
+
+// Question #3
+// "should find the smallest number divisible by each of the numbers 1 to 20"
+
+function smallestDivisibleBy1And20() {
+  let number = 20;
+
+  while (true) {
+    for (let i=1; i < 21; i++ ) {
+      if (number%i===0) {
+        // console.log(i)
+        if (i === 20) {
+          return number
+        } else {
+          continue
+        }
+      } else {
+        break;
+      }
+    }
+    
+    number += 1;
+  }
+}
+
+console.log(smallestDivisibleBy1And20())
