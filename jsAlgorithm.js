@@ -382,26 +382,54 @@ function summation(stringy){
       return Number(summation(String(num).slice(2))) + Number(String(num).substring(0, 2))
     } else {
       return Number(summation(String(num)))
-    }
+    }ㅋ
   
   }
 
 console.log(sumDigits(1423))
 console.log(sumDigits(-423))
 
-  function sumDigits2(num) {
+function sumDigits2(num) {
     // your code here
-    if (num < 0){
-      return Number(String(num).split('').slice(1).reduce((acc, curr, currIdx) => {
-        return currIdx === 0 ? acc-curr : acc + parseInt(curr)
+  if (num < 0){
+    return Number(String(num).split('').slice(1).reduce((acc, curr, currIdx) => {
+      return currIdx === 0 ? acc-curr : acc + parseInt(curr)
+  }, 0))
+  } else {
+    return Number(String(num).split('').reduce((acc, curr) => {
+        return acc + parseInt(curr)
     }, 0))
-    } else {
-      return Number(String(num).split('').reduce((acc, curr) => {
-          return acc + parseInt(curr)
-      }, 0))
-    }
-  
   }
+  
+}
+
+
 
 console.log(sumDigits2(7777))
 console.log(sumDigits2(-55024))
+
+
+
+
+// Modulo is odd ???
+
+function modulo(num1, num2){
+  let sign = num1 > 0 ? 1 : -1;
+
+  num1 = Math.abs(num1)
+  num2 = Math.abs(num2)
+
+  let highestIterator = Math.floor(num1/num2)
+
+  return sign * (num1 - (num2*highestIterator))
+
+}
+
+function isOddWithoutModulo(num) {
+  // your code here
+  return Math.abs(modulo(num, 2))===1;
+}
+
+
+console.log(modulo(5, 2))
+console.log(isOddWithoutModulo(7))
