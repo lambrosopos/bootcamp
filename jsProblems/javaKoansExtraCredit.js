@@ -1,10 +1,3 @@
-/*
-
-"should find the difference between the sum of the squares and the square of the sums"
-
-"should find the 10001st prime"
-*/
-
 // Question #1
 // "should find the largest prime factor of a composite number"
 
@@ -107,9 +100,52 @@ function smallestDivisibleBy1And20() {
         break;
       }
     }
-    
+
     number += 1;
   }
 }
 
-console.log(smallestDivisibleBy1And20())
+// console.log(smallestDivisibleBy1And20())
+
+
+
+// Question 4
+// "should find the difference between the sum of the squares and the square of the sums"
+
+// Given numbers e.g. [1, 2, 3, 4, 5, 6, 7,  8, 9]
+// sum of squares => [1, 4, 9, 16, 25, 36, 49,  64, 81]
+// square of sums => [45 ** 2]
+
+//  -> use arguments...
+
+function diffBetweenSumAndSQ () {
+  let numbers = Array.from(arguments);
+  let sumOfSquares = numbers.map((val) => Math.pow(val, 2)).reduce((acc, curr) => acc + curr);
+  let squareOfSums = Math.pow(numbers.reduce((acc, curr) => acc + curr), 2);
+
+  return sumOfSquares - squareOfSums;
+}
+
+// console.log(diffBetweenSumAndSQ(1, 2, 3, 4, 5, 6, 7, 8, 9))
+
+
+// Question 5
+// "should find the 10001st prime"
+
+function findNthPrime(nthNumber) {
+  let counter = 0;
+  let number = 2;
+  while (counter<nthNumber) {
+    if (isPrime(number)) {
+      counter += 1;
+      if (counter === nthNumber) {
+        return number;
+      }
+    }
+    number += 1;
+  }
+}
+
+console.log(findNthPrime(5))
+console.log(findNthPrime(1001))
+console.log(findNthPrime(265))
