@@ -84,14 +84,14 @@ function findPalindrome(digitSize) {
 // Question #3
 // "should find the smallest number divisible by each of the numbers 1 to 20"
 
-function smallestDivisibleBy1And20() {
-  let number = 20;
+function smallestDivisibleBy1And20(getUptilNum=20) {
+  let number = getUptilNum;
 
   while (true) {
-    for (let i=1; i < 21; i++ ) {
+    for (let i=1; i < getUptilNum + 1; i++ ) {
       if (number%i===0) {
         // console.log(i)
-        if (i === 20) {
+        if (i === getUptilNum) {
           return number
         } else {
           continue
@@ -105,7 +105,9 @@ function smallestDivisibleBy1And20() {
   }
 }
 
-// console.log(smallestDivisibleBy1And20())
+console.log(smallestDivisibleBy1And20(5))
+console.log(smallestDivisibleBy1And20(10))
+console.log(smallestDivisibleBy1And20(20))
 
 
 
@@ -146,6 +148,6 @@ function findNthPrime(nthNumber) {
   }
 }
 
-console.log(findNthPrime(5))
-console.log(findNthPrime(1001))
-console.log(findNthPrime(265))
+// console.log(findNthPrime(5))
+// console.log(findNthPrime(1001))
+// console.log(findNthPrime(265))
