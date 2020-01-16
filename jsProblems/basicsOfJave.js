@@ -228,7 +228,15 @@ snape.farewell(); // Severus has left the building. Bye for now.
 snape.age // 58
 snape.subject; // Dark arts
 
-console.log(snape._subject)
-snape._subject = "Balloon Magic"
-console.log(snape._subject)
+// console.log(snape._subject)
+// snape._subject = "Balloon Magic"
+// console.log(snape._subject)
+
+// console.log(snape.name)
+// console.log(snape.age)
+// console.log(snape.gender)
+// console.log(snape.interests)
+// console.log(snape.subject)
+// console.log(snape.grade)
+// console.log(snape)
 
