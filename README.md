@@ -1,5 +1,7 @@
 # bootcamp
 code_states bootcamp logs and files
 
- - Where you learn the basics of JS
- - Created several files under jsProblems dir
+Files Information : 
+
+ - jsToy.js : JS file containing toy problems and solutions
+ - jsBasics.js : JS file containing basic problems and solutions
