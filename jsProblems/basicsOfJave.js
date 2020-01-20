@@ -240,3 +240,50 @@ snape.subject; // Dark arts
 // console.log(snape.grade)
 // console.log(snape)
 
+
+class Pokemon {
+  constructor(type, hp, sp, name) {
+    this.type = type;
+    this.hp = hp;
+    this.sp = sp;
+    this._name = name;
+  }
+
+  set name(newName) {
+    this._name = newName;
+  }
+
+  get name() {
+    return this._name;
+  }
+}
+
+let pikachu = new Pokemon('eletric', 100, 80, 'Pikapika');
+console.log(pikachu._name)
+console.log(pikachu.type)
+console.log(pikachu.sp)
+console.log(pikachu.hp)
+
+class Electric extends Pokemon {
+  constructor (type, hp, sp, name) {
+    super(type, hp, sp, name);
+  }
+
+  attack () {
+    return `Electric attack by ${this._name}`
+  }
+}
+
+let eevee = new Electric("AAA", 111, 2, "Steep")
+
+console.log(typeof eevee)
+console.log(eevee._name)
+console.log(eevee.hp)
+console.log(eevee.sp)
+console.log(eevee.type)
+console.log(eevee.attack())
+
+
+
+
+
