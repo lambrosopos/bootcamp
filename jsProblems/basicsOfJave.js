@@ -2,6 +2,7 @@
 // The difference between object
 // dot notation and bracket notation
 // ============================================
+console.log('hello world')
 
 let dictA = {};
     dictA.key = '123'; // Using dot notation is closer to 'string'
@@ -23,7 +24,7 @@ let dictB = {};
 // One-line if statements
 // ============================================
 
-// Tired of writing an if... else statement 
+// Tired of writing an if... else statement
 // just for the sake of a simple condition?
 // Here is your solution
 
@@ -132,7 +133,7 @@ function testingRegex(something) {
     let re = /fell/g
     let result = re.test(something)
     let lastIndex = re.lastIndex
-    
+
     return [result, lastIndex];
 }
 
@@ -180,7 +181,7 @@ leia.greeting();
 //         first,
 //         last
 //       };
-  
+
 //     this.age = age;
 //     this.gender = gender;
 //     this.interests = interests;
@@ -194,7 +195,7 @@ leia.greeting();
   class Teacher extends Person {
     constructor(first, last, age, gender, interests, subject, grade) {
       super(first, last, age, gender, interests);
-  
+
       // subject and grade are specific to Teacher
       this.subject = subject;
       this.grade = grade;
@@ -212,11 +213,11 @@ class Snapey extends Person {
       this._subject = subject;
       this.grade = grade;
     }
-  
+
     get subject() {
       return this._subject;
     }
-  
+
     set subject(newSubject) {
       this._subject = newSubject;
     }
@@ -282,8 +283,3 @@ console.log(eevee.hp)
 console.log(eevee.sp)
 console.log(eevee.type)
 console.log(eevee.attack())
-
-
-
-
-
