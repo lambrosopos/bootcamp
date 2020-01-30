@@ -34,7 +34,7 @@ console.log(fromListToObject([['make', 'Ford'], ['model', 'Mustang'], ['year', 1
 function fromListToObject2(array) {
     let result = {};
     array.forEach((element) => result[element[0]] = element[1])
-    
+
     return result
 }
 
@@ -103,7 +103,7 @@ function transformEmployeeData(array) {
         return val.reduce((acc, cur) => ({...acc, [cur[0]] : cur[1]}), {})
     })
   }
-  
+
   let array = [
     [
       ['firstName', 'Joe'],
@@ -118,7 +118,7 @@ function transformEmployeeData(array) {
     //   ['role', 'manager']
     // ]
   ];
-  
+
   let output = transformEmployeeData(array);
   console.log(output);
 
@@ -177,7 +177,7 @@ function convertObjectToList(obj) {
     }
     return result;
   }
-  
+
 console.log(convertObjectToList(objA));
 
 function convertObjectToList2(obj) {
@@ -205,7 +205,7 @@ Given a name, "greetCustomer" returns a greeting based on how many times that cu
 customerData의 형식은 아래와 같습니다.
 */
 
-  
+
 
 /*
 The greeting should be different, depending on the name on their reservation. (손님들의 예약에 나타나 있는 이름에 따라 인삿말이 달라야 합니다.)
@@ -258,10 +258,10 @@ function greetCustomer(customerData, firstName) {
     if (!(firstName in customerData)) {
       return greeting['unknown'];
     };
-  
+
     let customer = customerData[firstName];
     let numVisits = customer['visits'];
-  
+
     if (numVisits>1){
       let result = greeting['otherwise'];
       return result.replace('$name', firstName);
@@ -278,7 +278,7 @@ console.log(greetCustomer(customerData, 'Margaret'))
 console.log(greetCustomer(customerData, 'Carrie'))
 
 function greetCustomer2(customerData, firstName) {
-    
+
     switch (customerData[firstName] ? customerData[firstName].visits : undefined) {
         case (undefined) :
             return 'Welcome! Is this your first time?';
@@ -288,7 +288,7 @@ function greetCustomer2(customerData, firstName) {
             return `Welcome back, ${firstName}! So glad to see you again!`
     }
 }
-  
+
 
 
 console.log(greetCustomer2(customerData, 'Joe'))
@@ -339,7 +339,7 @@ function getIndexOf2(char, str) {
     // your code here
     return str.split('').reduce((acc, curr, curIdx) => curr===char ? (acc.push(curIdx), acc) : acc, [])[0]
 }
-    
+
 
 console.log(typeof getIndexOf2('a', 'I\'m an apple'))
 console.log(getIndexOf2('a', 'Crisis comes at an early price'))
@@ -375,7 +375,7 @@ function summation(stringy){
       return acc + Number(curr)
     }, 0);
   }
-  
+
   function sumDigits(num) {
     // your code here
     if (String(num)[0] === '-'){
@@ -383,7 +383,7 @@ function summation(stringy){
     } else {
       return Number(summation(String(num)))
     }ㅋ
-  
+
   }
 
 console.log(sumDigits(1423))
@@ -400,7 +400,7 @@ function sumDigits2(num) {
         return acc + parseInt(curr)
     }, 0))
   }
-  
+
 }
 
 
@@ -433,3 +433,107 @@ function isOddWithoutModulo(num) {
 
 console.log(modulo(5, 2))
 console.log(isOddWithoutModulo(7))
+
+
+//========================================
+// a007_modulo.js
+//========================================
+
+/* Explanation
+
+Write a function called "modulo". ("modulo" 함수를 작성하세요.)
+Given 2 numbers, "modulo" returns the remainder after dividing num1 by num2.
+(두 숫자가 주어졌을때, "modulo" 함수는 첫번째 수를 두번째 수로 나눴을때 나머지 값을 반환합니다.)
+
+It should behave as described in the canonical documentation (MDN)
+for the JavaScript remainder operator: (아래 문서에서 설명된 자바스크립트의 나머지 연산자 처럼 동작해야 합니다.)
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/ArithmeticOperators#Remainder()
+
+Notes:
+
+Do NOT use the actual built-in modulo (aka "remainder") operator (%) in your implementation.
+(- 이미 구현되어 있는 나머지 연산자(%)를 사용하지 마세요.)
+-0 % ANYNUMBER = 0. (- 0 & 아무숫자 = 0)
+-ANYNUMBER % 0 = NaN. (- 아무숫자 % 0 = NaN)
+-If either operand is NaN, then the result is NaN. (- 두 수중 하나라도 NaN 이라면, 결과값은 NaN 입니다.)
+-Modulo always returns the sign of the first number. (modulo 함수는 항상 첫번째 숫자의 +/- 값을 반환합니다.)
+*/
+
+function modulo(num1, num2) {
+  let sign = Math.sign(num1)
+
+  num1 = Math.abs(num1)
+  num2 = Math.abs(num2)
+
+  // Check for irregularities
+  if (num1 === 0) {
+    return 0;
+  }
+  if (num2 === 0 || isNaN(num2) || isNaN(num1)) {
+    return NaN;
+  }
+
+  // If difference is the same as num2 or smaller than num2
+  // return 0 or difference
+  if (num1 === num2) {
+    return 0;
+  } else if (num1 < num2) {
+    return sign * num1;
+  }
+  
+  return modulo(sign * (num1-num2), num2);
+
+}
+
+
+/* Examples
+  modulo(9, 2)
+   - 1
+  modulo(9, 5)
+   - 4
+  modulo(8, 4)
+   - 0
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// To run
+
+function runAll() {
+
+}
