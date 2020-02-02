@@ -142,12 +142,12 @@ function parseJSON(jsonObj) {
     // Finding the key:value pairs
     let keyValuePairsList = [];
     let counter = 0;
-    for (let i:0;i<tempJSON.length;i++){
+    for (let i=0;i<tempJSON.length;i++){
       let char = tempJSON[char];
 
       if (char === '{' | char === '['){
         counter += 1;
-      } else if (char === '}' } char === ']'){
+      } else if (char === '}' | char === ']'){
         counter -= 1;
       }
 
