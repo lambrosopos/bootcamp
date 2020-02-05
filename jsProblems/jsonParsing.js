@@ -33,19 +33,26 @@ function parseJSON(jsonObj) {
   // escaping
   '["\\\\\\"\\"a\\""]',
   '["and you can\'t escape thi\s"]'
+
+
+  '["foo", "bar"',
+  '["foo", "bar\\"]'
+
+
   */
 
   const REGEX_LIST = {
-    'array':/^\[|\]$/g,
-    'dict':/^\{|\}$/g,
-    'string':/^\"|\"$/g,
-    'primitive':/.*/,
+    'array' : /^\s*\[|\]\s*$/g,
+    'dict' : /^\s*\{|\}\s*$/g,
+    'string' : /^\"|\"$/g,
+    'primitive' : /.*/,
   }
 
   const ERROR_LIST = [
-    /^\[.*(?!\])$/,
+    /^\s*\[.*[^\]]\s*$/,
+    /^\s*[^\[].*\]\s*$/,
     /^(?!\[).*\]$/,
-    /\\$/g,
+    // /\\/g,
   ]
 
   // Gets type : array, dict, string, primitive (default)
@@ -61,6 +68,19 @@ function parseJSON(jsonObj) {
       }
     }
   };
+
+  function isEscapable(word){
+    let testStr = String(word);
+
+    try {
+      console.log(c);
+    }
+    catch(error){
+      return undefined
+    }
+
+    return null;
+  }
 
   // Checks if unparseableStrings
   function isParseable(testJSON){
@@ -105,22 +125,108 @@ function parseJSON(jsonObj) {
     }
 
     isParseable(tempJSON)
+    // if (isEscapable(tempJSON)===undefined){
+    //   return undefined;
+    // }
 
-    // debugger;
-    let tempArrList = trimSpaces(tempJSON.replace(/"/g, '').replace(REGEX_LIST['array'], '')).split(',');
+    let tempArrStr = tempJSON.replace(REGEX_LIST['array'], '');
     // let tempArrList = trimSpaces(tempJSON).replace(REGEX_LIST['array'], '').replace(/"/g, '').split(',');
+    let tempWord = '', counter =0;
+    for (let i=0;i<tempArrStr.length;i++){
+      // debugger;
 
-    for (let i=0;i<tempArrList.length;i++){
-      let elCurrent = tempArrList[i];
-      elCurrent = changeValue(elCurrent);
-      resultArr.push(elCurrent);
+      let currentChar = tempArrStr[i];
+
+      if (currentChar === '{' || currentChar === '['){
+        counter += 1;
+      } else if (currentChar === '}' || currentChar === ']'){
+        counter -= 1;
+      }
+
+      if (counter === 0){
+        if (/^\,\s*"/.test(tempArrStr.slice(i)) || i === tempArrStr.length -1){
+
+          if (i === tempArrStr.length-1){
+            tempWord += currentChar;
+          }
+
+          tempWord = tempWord.replace(/\s+$/, '')
+          tempWord = tempWord.replace(/^\s+/, '')
+
+          for (let i=0;i<tempWord.length;i++){
+            // debugger;
+            if (/\\{2,}/g.test(tempWord)){
+              tempWord = tempWord.replace(/(\\(?!\\))/g, '')
+            }
+          }
+
+          let elType = getType(tempWord);
+
+          if (elType === 'array'){
+            tempWord = whenArray(tempWord)
+            resultArr.push(tempWord)
+          } else if (elType === 'dict'){
+            tempWord = whenDict(tempWord);
+            resultArr.push(tempWord);
+          } else {
+            // debugger;
+            tempWord = changeValue(tempWord);
+            if (/\\\s*$/.test(tempWord)){
+              throw new SyntaxError;
+            }
+            resultArr.push(tempWord);
+          }
+
+
+          tempWord = '';
+        } else if (/^\,\s*/.test(tempArrStr.slice(i)) || i === tempArrStr.length -1){
+          let checkValuesArr = ['null', 'undefined', 'true', 'false'];
+
+          let temp = tempWord.replace(/\s+$/, '');
+          temp = temp.replace(/^\s+/, '');
+          let tempType = getType(temp);
+
+          if (checkValuesArr.some(val=>val===temp)){
+            tempWord = changeValue(temp);
+            resultArr.push(tempWord);
+
+            tempWord = ''
+          } else if (!isNaN(parseFloat(tempWord))){
+            tempWord = changeValue(temp);
+            resultArr.push(tempWord);
+
+            tempWord = ''
+          } else if (tempType === 'array'){
+            tempWord = whenArray(tempWord)
+            resultArr.push(tempWord)
+
+            tempWord = ''
+          } else if (tempType === 'dict'){
+            tempWord = whenDict(tempWord);
+            resultArr.push(tempWord);
+
+            tempWord = ''
+          }
+
+
+        } else {
+          tempWord += currentChar;
+        }
+        } else {
+          tempWord += currentChar;
+        }
+
+
+
     }
 
     return resultArr;
   }
 
+
   // Runs when dictionary, returns dictionary object
   function whenDict(tempJSON=jsonObj){
+    // ;
     /* Methods
       Retrieve character by character of the dictJSON
       save until ':' as key
@@ -132,33 +238,109 @@ function parseJSON(jsonObj) {
           recognizes it's nested
     */
     isParseable(tempJSON);
+    isEscapable(tempJSON);
 
-    if (/^\{\}$/g.tempJSON){
+    if (/^\{\}$/g.test(tempJSON)){
       return {};
     };
 
-    let resultDict = {};
-
     // Finding the key:value pairs
-    let keyValuePairsList = [];
-    let counter = 0;
-    for (let i=0;i<tempJSON.length;i++){
-      let char = tempJSON[char];
+    let jsonDict = tempJSON.replace(/^\s*\{|\}\s*$/g, '');
+    let isKey = true;
 
-      if (char === '{' | char === '['){
-        counter += 1;
-      } else if (char === '}' | char === ']'){
-        counter -= 1;
-      }
+    let resultDict = {}, keyValuePair = Array(2), tempWord = '', counter = 0;
+    let startKey = false; startValue = false;
+    for (var i=0;i<jsonDict.length;i++){
+      // debugger;
+      // When taking a key word
 
-      if (counter === 0, char === ','){
-        keyValuePairsList.push(i);
-      }
+      if (isKey){
+        if (jsonDict[i] === '"'){
+          startKey = !startKey;
+        }
 
+        if (startKey){
+          if (jsonDict[i] !== ':'){
+            // Storing up to ':'
+            tempWord += jsonDict[i]
+            continue;
+          } else {
+            keyValuePair[0] = changeValue(tempWord)
+            tempWord = '';
+            isKey = false;
+          }
+        } else if (jsonDict[i] === '"'){
+          tempWord += jsonDict[i];
+          keyValuePair[0] = changeValue(tempWord)
+          tempWord = '';
+          isKey = false;
+        }
+      } else {
+
+        if (jsonDict[i] === '{' || jsonDict[i] === '['){
+          startValue = true;
+          counter += 1;
+        } else if (jsonDict[i] === '}' || jsonDict[i] === ']'){
+          counter -= 1;
+        }
+        if (counter === 0){
+          if (jsonDict[i] !== ' ' & jsonDict[i] !== ':' && !startValue){
+            startValue = true
+          }
+        }
+
+        if (startValue){
+          // When taking value
+          // Check for array or dict
+          if (jsonDict[i-1] === ':' && jsonDict[i] === ' '){
+            continue;
+          }
+
+          if (counter === 0){
+            if (/^\,\s*"/.test(jsonDict.slice(i+1)) || /^\s*$/.test(jsonDict.slice(i+1))){
+
+              if (jsonDict[i] !== ','){
+                tempWord += jsonDict[i];
+
+              }
+
+              let valType = getType(tempWord);
+
+              if (valType === 'array'){
+                keyValuePair[1] = whenArray(tempWord);
+                tempWord = '';
+                // isKey = true;
+
+                resultDict[keyValuePair[0]] = keyValuePair[1];
+              } else if (valType === 'dict'){
+                keyValuePair[1] = whenDict(tempWord)
+                tempWord = '';
+                // isKey = true;
+
+                resultDict[keyValuePair[0]] = keyValuePair[1];
+              } else {
+                keyValuePair[1] = changeValue(tempWord);
+                tempWord = '';
+
+
+                resultDict[keyValuePair[0]] = keyValuePair[1];
+              }
+
+              startValue = false;
+              isKey = true;
+            } else {
+              tempWord += jsonDict[i]
+            }
+          } else {
+            tempWord += jsonDict[i]
+          }
+
+        } // End if statement for startvalue
+
+
+      } // End else for if value
     }
-
-
-
+    return resultDict;
   }
 
   // Checks array | dict and returns in the same format
@@ -177,6 +359,6 @@ function parseJSON(jsonObj) {
 
     return resultObj;
   }
-  debugger;
+  // debugger;
   return needToRun()
 };
