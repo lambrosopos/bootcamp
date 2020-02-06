@@ -11,3 +11,10 @@ while ((myArray = myRe.exec(str)) !== null) {
 }
 
 
+/* Regular Expressions Tips
+[] : used when finding a single character
+[^] ; used when excluding characters within brackets
+() : groups together the expressions within
+
+
+*/
