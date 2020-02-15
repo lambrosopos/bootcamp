@@ -62,11 +62,11 @@ console.log(output); // --> 1
 
 
 function findSmallestElement(arr) {
-    // your code here 
+    // your code here
     if (arr.length === 0) {
       return 0;
     }
-    
+
     let smallest = arr.reduce(function(acc, curr){
         console.log({acc, curr})
       if (curr < acc) {
@@ -157,8 +157,11 @@ console.log(output); // --> 5
 */
 
 function getLengthOfLongestElement(arr) {
+    return arr.reduce((a, c) => c.length > a ? c.length : a, 0);
+    return arr.sort((a, b) => b.length - a.length)[0].length;
+
     let result = arr.sort((a, b) => b.length - a.length)
-    
+
     console.log(result)
     return result[0].length
 }
