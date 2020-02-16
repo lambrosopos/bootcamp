@@ -63,6 +63,8 @@ console.log(output); // --> 1
 
 function findSmallestElement(arr) {
     // your code here
+    return Math.min.apply(null, arr);
+
     if (arr.length === 0) {
       return 0;
     }
@@ -80,7 +82,7 @@ function findSmallestElement(arr) {
     return smallest;
 }
 
-console.log(findSmallestElement([43, 5, 2, 79, 54]))
+console.log("Minimum :" + findSmallestElement([43, 5, 2, 79, 54]))
 
 
 
