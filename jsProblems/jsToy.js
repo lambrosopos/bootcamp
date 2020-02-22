@@ -4,13 +4,14 @@
 
 function onlyEvenElements(arr) {
     // your code here
-    let newArr = []
-    for (element of arr) {
-      if (element%2===0) {
-        newArr.push(element)
-      }
-    }
-    return newArr
+    return arr.filter((_) => _ % 2 === 0)
+    // let newArr = []
+    // for (element of arr) {
+    //   if (element%2===0) {
+    //     newArr.push(element)
+    //   }
+    // }
+    // return newArr
 }
 
 console.log(onlyEvenElements([1, 2, 3, 4, 5, 6]))
@@ -55,7 +56,7 @@ console.log(letterCapitalize2("apple is not from the tree"));
 // ============================================
 
 
-// convert nested (2-dimensional) array to flatten array! 
+// convert nested (2-dimensional) array to flatten array!
 // (2차원 배열을 1차원 배열로 전환하세요.)
 
 // Examples:
@@ -74,7 +75,7 @@ function flatten (array){
         } else {
         newArray.push(array[i])
         }
-        
+
     }
     return newArray
 }
@@ -113,12 +114,12 @@ function multiplyNumbers(num) {
 
 function multiplicativePersistence(num) {
     let counter = 0;
-    
+
     while (num>9) {
         num = multiplyNumbers(num)
         counter = counter + 1
     };
-    
+
     return counter
 }
 
@@ -137,11 +138,11 @@ console.log(multiplicativePersistence(2300))
 // Week 3-3 dashInsert
 // ============================================
 
-// Have the function DashInsert insert dashes ('-') between each two odd numbers in str. 
+// Have the function DashInsert insert dashes ('-') between each two odd numbers in str.
 // (문자열이 주어졌을때, 'DashInsert' 함수는 문자열에 있는 두 홀수 사이에 대시('-')를 추가하여 반환합니다.)
 
-// For example: if str is 454793 the output should be 4547-9-3. 
-// (예시: 주어진 문자열이 454793 이라면 결과값은 4547-9-3 입니다.) 
+// For example: if str is 454793 the output should be 4547-9-3.
+// (예시: 주어진 문자열이 454793 이라면 결과값은 4547-9-3 입니다.)
 // Don't count zero as an odd number. (0 을 홀수로 간주하지 마세요.)
 
 function DashInsert(string) {
@@ -151,15 +152,15 @@ function DashInsert(string) {
     //     if (string.indexOf(curr)!==string.length-1){
     //       return prev + curr + '-';
     //     }
-        
+
     //   }
     //   return prev + curr
     // }, '')
     return string.split("").reduce((prev, curr, currIdx) => (parseInt(curr)%2===1 && parseInt(string[currIdx+1])%2===1) ? prev + curr + '-' : prev + curr, '')
-        
+
   }
-  
-  
+
+
 console.log(DashInsert('454793'));
 
 
@@ -232,7 +233,7 @@ function runLength(str) {
 };
 
 function runLength2(str) {
-    
+
     let result = {
         code : '',
         counter : 1,
@@ -242,7 +243,7 @@ function runLength2(str) {
         str[i]===str[i+1] ? result.counter++ : (result.code += result.counter + str[i], result.counter = 1);
     };
     return result.code;
-    
+
 }
 
 
@@ -377,7 +378,7 @@ function getProductOfAllElementsAtProperty(obj, key) {
     if (!obj[key] || obj[key].length ===0 || !Array.isArray(obj[key])){
         return 0
     }
-    
+
     return obj[key].reduce((acc, curr) => acc * curr, 1);
 }
 
@@ -421,7 +422,7 @@ gcd(22, 24) // 2
 */
 
 function gcd(num1, num2) {
-    
+
     let maxLimit = Math.max(num1, num2);
     let greatestDivsier = 0;
 
@@ -513,7 +514,7 @@ function convertToNum(val) {
 }
 
 function findMinByBracket(str) {
-    
+
     let result = str.split('-')
     result = result.map(convertToNum)
 
@@ -522,9 +523,9 @@ function findMinByBracket(str) {
     } else {
         return result.reduce((acc, curr, currIdx) => currIdx===0 ? acc : acc - curr, result[0])
     };
-    
+
 };
-  
+
 
 console.log(findMinByBracket('55-50+40'))
 console.log(findMinByBracket('55-50+40+30-30'))
@@ -568,7 +569,7 @@ return true;
 
 console.log(primeNumber(4))
 console.log(primeNumber(3))
-  
+
 function goldbachsConjecture(num) {
     for (let i=2; i < num; i++) {
         let remainder = num - i;
