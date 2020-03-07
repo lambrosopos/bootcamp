@@ -2,7 +2,6 @@
 // The difference between object
 // dot notation and bracket notation
 // ============================================
-
 let dictA = {};
 dictA.key = "123"; // Using dot notation is closer to 'string'
 
