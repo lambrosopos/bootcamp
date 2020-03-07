@@ -21,44 +21,45 @@ Note that the input may have a different number of elements than the given sampl
 */
 
 function fromListToObject(array) {
-    //your code here
-    let result = {};
-    for (let i=0;i<array.length;i++){
-      result[array[i][0]] = array[i][1]
-    }
-    return result
+  //your code here
+  let result = {};
+  for (let i = 0; i < array.length; i++) {
+    result[array[i][0]] = array[i][1];
+  }
+  return result;
 }
 
-console.log(fromListToObject([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964]]));
+// console.log(fromListToObject([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964]]));
 
 function fromListToObject2(array) {
-    let result = {};
-    array.forEach((element) => result[element[0]] = element[1])
+  let result = {};
+  array.forEach(element => (result[element[0]] = element[1]));
 
-    return result
+  return result;
 }
 
-console.log(fromListToObject2([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964]]))
+// console.log(fromListToObject2([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964]]))
 
 function fromListToObject3(array) {
-    return array.reduce((acc, cur) => ({
-        ...acc,
-        [cur[0]]: cur[1]
-    }), {});
+  return array.reduce(
+    (acc, cur) => ({
+      ...acc,
+      [cur[0]]: cur[1]
+    }),
+    {}
+  );
 }
 
-console.log(fromListToObject3([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964]]))
-
+// console.log(fromListToObject3([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964]]))
 
 function fromListToObject4(array) {
-    return array.reduce((acc, cur) => {
-        acc[cur[0]] = cur[1]
-    return acc}, {});
+  return array.reduce((acc, cur) => {
+    acc[cur[0]] = cur[1];
+    return acc;
+  }, {});
 }
 
-console.log(fromListToObject4([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964], ['make', 'Ford'], ['he', 'she']]))
-
-
+// console.log(fromListToObject4([['make', 'Ford'], ['model', 'Mustang'], ['year', 1964], ['make', 'Ford'], ['he', 'she']]))
 
 //========================================
 // transformEmployeeData
@@ -93,53 +94,44 @@ console.log(fromListToObject4([['make', 'Ford'], ['model', 'Mustang'], ['year', 
 */
 
 function transformEmployeeData(array) {
-    // return array.map((val) => {
-    //     val.reduce((acc, cur) => ({
-    //         ...acc,
-    //         cur[0] : cur[1]
-    //     }), {})
-    // })
-    return array.map(function (val) {
-        return val.reduce((acc, cur) => ({...acc, [cur[0]] : cur[1]}), {})
-    })
-  }
-
-  let array = [
-    [
-      ['firstName', 'Joe'],
-      ['lastName', 'Blow'],
-      ['age', 42],
-      ['role', 'clerk']
-    ],
-    // [
-    //   ['firstName', 'Mary'],
-    //   ['lastName', 'Jenkins'],
-    //   ['age', 36],
-    //   ['role', 'manager']
-    // ]
-  ];
-
-  let output = transformEmployeeData(array);
-  console.log(output);
-
-
-let dictA = {
-    firstName : 'Sloppy',
-    lastName : 'Joes',
-    age : '54',
-    role : 'great',
+  // return array.map((val) => {
+  //     val.reduce((acc, cur) => ({
+  //         ...acc,
+  //         cur[0] : cur[1]
+  //     }), {})
+  // })
+  return array.map(function(val) {
+    return val.reduce((acc, cur) => ({ ...acc, [cur[0]]: cur[1] }), {});
+  });
 }
 
-let arrA = [1, 2]
+let array = [
+  [["firstName", "Joe"], ["lastName", "Blow"], ["age", 42], ["role", "clerk"]]
+  // [
+  //   ['firstName', 'Mary'],
+  //   ['lastName', 'Jenkins'],
+  //   ['age', 36],
+  //   ['role', 'manager']
+  // ]
+];
 
-let dictB = {...dictA, [arrA[0]]:arrA[1]}
+let output = transformEmployeeData(array);
+// console.log(output);
 
+let dictA = {
+  firstName: "Sloppy",
+  lastName: "Joes",
+  age: "54",
+  role: "great"
+};
 
-console.log(dictA)
-console.log(dictB)
+let arrA = [1, 2];
 
+let dictB = { ...dictA, [arrA[0]]: arrA[1] };
 
-
+//
+// console.log(dictA)
+// console.log(dictB)
 
 //========================================
 // 006_convertObjectToArray3.js
@@ -163,33 +155,29 @@ Return value:
 Note that your function should be able to handle ANY object like this, not just the exact sample provided above. (여러분이 작성하신 함수는 위에 제시된 예시 뿐만 아니라 어떠한 객체도 다룰 수 있어야 합니다.)
 */
 let objA = {
-    name: 'Holly',
-    age: 35,
-    role: 'producer'
-    }
-
+  name: "Holly",
+  age: 35,
+  role: "producer"
+};
 
 function convertObjectToList(obj) {
-    // your code here
-    let result= [];
-    for (key in obj){
-      result.push([key, obj[key]])
-    }
-    return result;
+  // your code here
+  let result = [];
+  for (key in obj) {
+    result.push([key, obj[key]]);
   }
+  return result;
+}
 
-console.log(convertObjectToList(objA));
+// console.log(convertObjectToList(objA));
 
 function convertObjectToList2(obj) {
-    return Object.keys(obj).map((val, idx) => {
-        return [val, Object.values(obj)[idx]]})
-  }
+  return Object.keys(obj).map((val, idx) => {
+    return [val, Object.values(obj)[idx]];
+  });
+}
 
-console.log(convertObjectToList2(objA))
-
-
-
-
+// console.log(convertObjectToList2(objA))
 
 //========================================
 // 007_greetCustomers.js
@@ -204,8 +192,6 @@ Given a name, "greetCustomer" returns a greeting based on how many times that cu
 
 customerData의 형식은 아래와 같습니다.
 */
-
-
 
 /*
 The greeting should be different, depending on the name on their reservation. (손님들의 예약에 나타나 있는 이름에 따라 인삿말이 달라야 합니다.)
@@ -232,73 +218,65 @@ if (firstName === 'Joe') {
 
 */
 let customerData = {
-    Joe: {
-      visits: 1
-    },
-    Carol: {
-      visits: 2
-    },
-    Howard: {
-      visits: 3
-    },
-    Carrie: {
-      visits: 4
-    }
+  Joe: {
+    visits: 1
+  },
+  Carol: {
+    visits: 2
+  },
+  Howard: {
+    visits: 3
+  },
+  Carrie: {
+    visits: 4
+  }
 };
 
-
-
 function greetCustomer(customerData, firstName) {
-    let greeting = {
-      unknown:'Welcome! Is this your first time?',
-      second:'Welcome back, $name! We\'re glad you liked us the first time!',
-      otherwise:'Welcome back, $name! So glad to see you again!',
-    };
-    // your code here
-    if (!(firstName in customerData)) {
-      return greeting['unknown'];
-    };
-
-    let customer = customerData[firstName];
-    let numVisits = customer['visits'];
-
-    if (numVisits>1){
-      let result = greeting['otherwise'];
-      return result.replace('$name', firstName);
-      // return String(greeting['otherwise']).replace($name, customer);
-    } else {
-      let result = greeting['second'];
-      return result.replace('$name', firstName);
-      // return String(greeting['second']).replace($name, customer);
-    };
+  let greeting = {
+    unknown: "Welcome! Is this your first time?",
+    second: "Welcome back, $name! We're glad you liked us the first time!",
+    otherwise: "Welcome back, $name! So glad to see you again!"
+  };
+  // your code here
+  if (!(firstName in customerData)) {
+    return greeting["unknown"];
   }
 
-console.log(greetCustomer(customerData, 'Joe'))
-console.log(greetCustomer(customerData, 'Margaret'))
-console.log(greetCustomer(customerData, 'Carrie'))
+  let customer = customerData[firstName];
+  let numVisits = customer["visits"];
 
-function greetCustomer2(customerData, firstName) {
-
-    switch (customerData[firstName] ? customerData[firstName].visits : undefined) {
-        case (undefined) :
-            return 'Welcome! Is this your first time?';
-        case (1) :
-            return `Welcome back, ${firstName}! We\'re glad you liked us the first time!`
-        default :
-            return `Welcome back, ${firstName}! So glad to see you again!`
-    }
+  if (numVisits > 1) {
+    let result = greeting["otherwise"];
+    return result.replace("$name", firstName);
+    // return String(greeting['otherwise']).replace($name, customer);
+  } else {
+    let result = greeting["second"];
+    return result.replace("$name", firstName);
+    // return String(greeting['second']).replace($name, customer);
+  }
 }
 
+// console.log(greetCustomer(customerData, 'Joe'))
+// console.log(greetCustomer(customerData, 'Margaret'))
+// console.log(greetCustomer(customerData, 'Carrie'))
 
+function greetCustomer2(customerData, firstName) {
+  switch (
+    customerData[firstName] ? customerData[firstName].visits : undefined
+  ) {
+    case undefined:
+      return "Welcome! Is this your first time?";
+    case 1:
+      return `Welcome back, ${firstName}! We\'re glad you liked us the first time!`;
+    default:
+      return `Welcome back, ${firstName}! So glad to see you again!`;
+  }
+}
 
-console.log(greetCustomer2(customerData, 'Joe'))
-console.log(greetCustomer2(customerData, 'Margaret'))
-console.log(greetCustomer2(customerData, 'Carrie'))
-
-
-
-
-
+// console.log(greetCustomer2(customerData, 'Joe'))
+// console.log(greetCustomer2(customerData, 'Margaret'))
+// console.log(greetCustomer2(customerData, 'Carrie'))
 
 //========================================
 // a002_getIndexOf.js
@@ -323,29 +301,29 @@ console.log(output); // --> 2
 */
 
 function getIndexOf(char, str) {
-    // your code here
-    for (let i=0;i<str.length;i++) {
-        if (str[i]===char){
-        return i
-        }
+  // your code here
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === char) {
+      return i;
     }
-    return -1
+  }
+  return -1;
 }
 
-console.log(getIndexOf('a', 'I\'m an apple'))
-
+// console.log(getIndexOf('a', 'I\'m an apple'))
 
 function getIndexOf2(char, str) {
-    // your code here
-    return str.split('').reduce((acc, curr, curIdx) => curr===char ? (acc.push(curIdx), acc) : acc, [])[0]
+  // your code here
+  return str
+    .split("")
+    .reduce(
+      (acc, curr, curIdx) => (curr === char ? (acc.push(curIdx), acc) : acc),
+      []
+    )[0];
 }
 
-
-console.log(typeof getIndexOf2('a', 'I\'m an apple'))
-console.log(getIndexOf2('a', 'Crisis comes at an early price'))
-
-
-
+// console.log(typeof getIndexOf2('a', 'I\'m an apple'))
+// console.log(getIndexOf2('a', 'Crisis comes at an early price'))
 
 //========================================
 // a005_sumDigits.js
@@ -370,70 +348,73 @@ In order to use some of the methods that will be most helpful to you, you will m
 Be sure to familiarize yourself with the "toString" method, as well as the "Number" function. ("Number" 함수와 "toString" 메소드에 꼭 익숙해지세요.)
 */
 
-function summation(stringy){
-    return stringy.split('').reduce(function(acc, curr){
-      return acc + Number(curr)
-    }, 0);
-  }
-
-  function sumDigits(num) {
-    // your code here
-    if (String(num)[0] === '-'){
-      return Number(summation(String(num).slice(2))) + Number(String(num).substring(0, 2))
-    } else {
-      return Number(summation(String(num)))
-    }ㅋ
-
-  }
-
-console.log(sumDigits(1423))
-console.log(sumDigits(-423))
-
-function sumDigits2(num) {
-    // your code here
-  if (num < 0){
-    return Number(String(num).split('').slice(1).reduce((acc, curr, currIdx) => {
-      return currIdx === 0 ? acc-curr : acc + parseInt(curr)
-  }, 0))
-  } else {
-    return Number(String(num).split('').reduce((acc, curr) => {
-        return acc + parseInt(curr)
-    }, 0))
-  }
-
+function summation(stringy) {
+  return stringy.split("").reduce(function(acc, curr) {
+    return acc + Number(curr);
+  }, 0);
 }
 
+function sumDigits(num) {
+  // your code here
+  if (String(num)[0] === "-") {
+    return (
+      Number(summation(String(num).slice(2))) +
+      Number(String(num).substring(0, 2))
+    );
+  } else {
+    return Number(summation(String(num)));
+  }
+  ㅋ;
+}
 
+// console.log(sumDigits(1423))
+// console.log(sumDigits(-423))
 
-console.log(sumDigits2(7777))
-console.log(sumDigits2(-55024))
+function sumDigits2(num) {
+  // your code here
+  if (num < 0) {
+    return Number(
+      String(num)
+        .split("")
+        .slice(1)
+        .reduce((acc, curr, currIdx) => {
+          return currIdx === 0 ? acc - curr : acc + parseInt(curr);
+        }, 0)
+    );
+  } else {
+    return Number(
+      String(num)
+        .split("")
+        .reduce((acc, curr) => {
+          return acc + parseInt(curr);
+        }, 0)
+    );
+  }
+}
 
-
-
+// console.log(sumDigits2(7777))
+// console.log(sumDigits2(-55024))
 
 // Modulo is odd ???
 
-function modulo(num1, num2){
+function modulo(num1, num2) {
   let sign = num1 > 0 ? 1 : -1;
 
-  num1 = Math.abs(num1)
-  num2 = Math.abs(num2)
+  num1 = Math.abs(num1);
+  num2 = Math.abs(num2);
 
-  let highestIterator = Math.floor(num1/num2)
+  let highestIterator = Math.floor(num1 / num2);
 
-  return sign * (num1 - (num2*highestIterator))
-
+  return sign * (num1 - num2 * highestIterator);
 }
 
 function isOddWithoutModulo(num) {
   // your code here
-  return Math.abs(modulo(num, 2))===1;
+  return Math.abs(modulo(num, 2)) === 1;
 }
 
-
-console.log(modulo(5, 2))
-console.log(isOddWithoutModulo(7))
-
+// console.log(modulo(5, 2))
+// console.log(isOddWithoutModulo(7))
 
 //========================================
 // a007_modulo.js
@@ -460,10 +441,10 @@ Do NOT use the actual built-in modulo (aka "remainder") operator (%) in your imp
 */
 
 function modulo(num1, num2) {
-  let sign = Math.sign(num1)
+  let sign = Math.sign(num1);
 
-  num1 = Math.abs(num1)
-  num2 = Math.abs(num2)
+  num1 = Math.abs(num1);
+  num2 = Math.abs(num2);
 
   // Check for irregularities
   if (num1 === 0) {
@@ -480,11 +461,9 @@ function modulo(num1, num2) {
   } else if (num1 < num2) {
     return sign * num1;
   }
-  
-  return modulo(sign * (num1-num2), num2);
 
+  return modulo(sign * (num1 - num2), num2);
 }
-
 
 /* Examples
   modulo(9, 2)
@@ -497,43 +476,53 @@ function modulo(num1, num2) {
 
 */
 
+// ============================================
+// Almost Increasing Sequence
+// ============================================
 
+// https://app.codesignal.com/arcade/intro/level-2/2mxbGwLzvkTCKAJMG
 
+function almostIncreasingSequence(sequence) {
+  const isUnique = num => {
+    return sequence.lastIndexOf(num) === sequence.indexOf(num);
+  };
 
+  const isIncreasing = (num1, num2, num3) => {
+    return num1 < num3 && num2 < num3;
+  };
 
+  let notMoved = true;
+  let copyArr = sequence.slice(1);
 
+  for (let i = 0; i < copyArr.length; i += 1) {
+    let prevNum = sequence[i > 0 ? i - 1 : 0];
+    let currNum = sequence[i];
+    let nextNum = copyArr[i];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// To run
-
-function runAll() {
-
+    if (isUnique(nextNum) && isIncreasing(prevNum, currNum, nextNum)) {
+      continue;
+    } else {
+      if (notMoved) {
+        notMoved = false;
+      } else {
+        return false;
+      }
+    }
+  }
+  return true;
 }
+
+const SEQUENCES_TEST_CASE = [[1, 3, 2], [1, 2, 1, 2], [30, 40, 50, 10, 20, 60]];
+
+const printTests = sequence => {
+  const output = almostIncreasingSequence(sequence);
+  console.log(output);
+};
+
+const testCases = () => {
+  for (let i = 0; i < SEQUENCES_TEST_CASE.length; i++) {
+    printTests(SEQUENCES_TEST_CASE[i]);
+  }
+};
+
+testCases();
